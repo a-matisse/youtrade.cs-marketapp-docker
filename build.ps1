@@ -1,8 +1,8 @@
 # build.ps1
 param(
-    [string]$Version = "4.1.1",
+    [string]$Version = "4.2.0",
     [string]$Revision = "1",
-    [string]$Username = "ТВОЙ_USERNAME"
+    [string]$Username = "youtradecs"
 )
 
 $tag1 = "marketapp-client-ubuntu:${Version}-${Revision}"

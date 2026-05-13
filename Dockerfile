@@ -1,5 +1,7 @@
 FROM ubuntu:noble
 
+ARG APP_VERSION=4.2.0
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 libasound2t64 libatk-bridge2.0-0t64 libcups2t64 \
     libdrm2 libexpat1 libgcc-s1 libglib2.0-0t64 \
@@ -10,8 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Установка .deb
-COPY market-app_4.1.1_amd64.deb /tmp/
-RUN dpkg -i --force-depends /tmp/market-app_4.1.1_amd64.deb && \
+COPY market-app_${APP_VERSION}_amd64.deb /tmp/
+RUN dpkg -i --force-depends /tmp/market-app_${APP_VERSION}_amd64.deb && \
     rm /tmp/*.deb
 
 EXPOSE 3000
