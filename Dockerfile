@@ -1,6 +1,6 @@
-FROM ubuntu:noble
+FROM justarchi/archisteamfarm:stable
 
-ARG APP_VERSION=4.2.0
+ARG APP_VERSION=4.3.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 libasound2t64 libatk-bridge2.0-0t64 libcups2t64 \
@@ -9,14 +9,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libstdc++6 libx11-6 libxcb1 libxcomposite1 \
     libxdamage1 libxext6 libxfixes3 libxrandr2 \
     libxtst6 \
+    supervisor \
     && rm -rf /var/lib/apt/lists/*
+
+# Установка конфигурации IPC
+COPY IPC.config /app/config/
 
 # Установка .deb
 COPY market-app_${APP_VERSION}_amd64.deb /tmp/
 RUN dpkg -i --force-depends /tmp/market-app_${APP_VERSION}_amd64.deb && \
     rm /tmp/*.deb
 
-EXPOSE 3000
+# Supervisor — главный процесс
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ENTRYPOINT ["market-app", "--no-sandbox", "--headless", "--api-docs"]
-CMD ["--api-host", "0.0.0.0", "--api-port", "3000"]
+# Выводим порты: marketapp(3000), asf(1242)
+EXPOSE 3000 1242
+
+# ENTRYPOINT — нельзя переопределить без --entrypoint флага
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
