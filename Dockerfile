@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Установка конфигурации IPC
 COPY IPC.config /app/config/
+COPY ASF.json /app/config/
 
 # Установка .deb
 COPY market-app_${APP_VERSION}_amd64.deb /tmp/

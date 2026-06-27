@@ -1,0 +1,6 @@
+{
+  "ConnectionTimeout": 240,
+  "ConfirmationsLimiterDelay": 20,
+  "LoginLimiterDelay": 30,
+  "WebLimiterDelay": 1000
+}
