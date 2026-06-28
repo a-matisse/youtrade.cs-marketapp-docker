@@ -1,4 +1,4 @@
-FROM justarchi/archisteamfarm:stable
+FROM justarchi/archisteamfarm:main
 
 ARG APP_VERSION=4.3.0
 

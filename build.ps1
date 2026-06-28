@@ -1,7 +1,7 @@
 # build.ps1
 param(
     [string]$Version = "4.3.0",
-    [string]$Revision = "8",
+    [string]$Revision = "10",
     [string]$Username = "youtradecs"
 )
 
@@ -17,13 +17,15 @@ Write-Host "  $tag3"
 Write-Host "  $tag4"
 
 docker build `
+  --no-cache `
   -t $tag1 `
   -t $tag2 `
   -t $tag3 `
   -t $tag4 `
   .
 
-if ($LASTEXITCODE -eq 0) {
+if ($LASTEXITCODE -eq 0)
+{
     Write-Host "Build OK" -ForegroundColor Green
     Write-Host "Push with: docker push ${Username}/marketapp-client-ubuntu --all-tags" -ForegroundColor Yellow
 }
