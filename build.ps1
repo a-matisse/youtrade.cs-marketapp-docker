@@ -1,7 +1,7 @@
 # build.ps1
 param(
-    [string]$Version = "4.3.0",
-    [string]$Revision = "11",
+    [string]$Version = "4.4.0",
+    [string]$Revision = "1",
     [string]$Username = "youtradecs"
 )
 

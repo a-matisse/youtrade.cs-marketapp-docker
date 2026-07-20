@@ -1,6 +1,6 @@
 FROM justarchi/archisteamfarm:main
 
-ARG APP_VERSION=4.3.0
+ARG APP_VERSION=4.4.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 libasound2t64 libatk-bridge2.0-0t64 libcups2t64 \

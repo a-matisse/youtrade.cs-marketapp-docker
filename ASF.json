@@ -1,7 +1,7 @@
 {
   "SteamProtocols": 7,
-  "ConnectionTimeout": 240,
+  "ConnectionTimeout": 180,
   "ConfirmationsLimiterDelay": 20,
-  "LoginLimiterDelay": 60,
+  "LoginLimiterDelay": 15,
   "WebLimiterDelay": 400
 }
